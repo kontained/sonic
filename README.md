@@ -7,4 +7,4 @@ I took some liberties in terms to the original design that was in the document, 
 
 In the 'extended' version I've pulled the business logic out of the DTO's and into it's own layer.
 
-I'm using Xunit as the unit testing framework, and Moq for the Mocking library.
+I'm using Autofac as the IoC container, Xunit as the unit testing framework, and Moq for the Mocking library.
