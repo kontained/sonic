@@ -1,5 +1,5 @@
 ﻿using System;
-using Sonic.DTO.Item;
+using Sonic.DTO.Basic.Items;
 
 namespace Sonic
 {
@@ -7,7 +7,7 @@ namespace Sonic
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");            
+            Console.WriteLine("Hello World!");
         }
     }
 }

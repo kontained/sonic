@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sonic.DTO.Items;
+using Sonic.DTO.Basic.Items;
 
-namespace Sonic.DTO.Order.Items
+namespace Sonic.DTO.Basic.Order.Items
 {
-    public class OrderItem
+    public abstract class OrderItem
     {
         public Item Item{ get; }
         public int Quantity { get; }

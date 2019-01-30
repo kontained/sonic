@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sonic.DTO.Order.Items
+namespace Sonic.DTO.Basic.Order.Items
 {
     public class MaterialOrderItem : OrderItem
     {

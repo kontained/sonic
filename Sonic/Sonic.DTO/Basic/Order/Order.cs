@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Sonic.DTO.Order.Items;
+using Sonic.DTO.Basic.Order.Items;
 
-namespace Sonic.DTO.Order
+namespace Sonic.DTO.Basic.Order
 {
     public class Order
     {
