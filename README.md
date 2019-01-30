@@ -6,3 +6,5 @@ Additionally, I've expanded upon the concepts laid out in the exercise. You can 
 I took some liberties in terms to the original design that was in the document, but I hope that it'll give you better insight into how I'd approach the problem.
 
 In the 'extended' version I've pulled the business logic out of the DTO's and into it's own layer.
+
+I'm using Xunit as the unit testing framework, and Moq for the Mocking library.
