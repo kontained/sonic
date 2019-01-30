@@ -5,6 +5,7 @@ using Moq;
 using Xunit;
 using Sonic.Business.Extended.Orders.Processor.Strategy;
 using Sonic.Business.Extended.Orders.Processor.Taxes;
+using Sonic.Business.Tests.Utils;
 using Sonic.DTO.Extended.Orders.Items;
 using Sonic.DTO.Extended.Orders;
 using Sonic.DTO.Extended.Store;
@@ -14,12 +15,19 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor.Strategy
 {
     public class ServiceOrderItemProcessingStrategyTests
     {
+        private OrderBuilderUtils _builderUtils;
+
+        public ServiceOrderItemProcessingStrategyTests()
+        {
+            _builderUtils = new OrderBuilderUtils();
+        }
+
         [Fact]
         public void BasicServiceOrderItemGetOrderTotalTest()
         {
-            var orderItem = BuildServiceOrderItem(1, "Delivery Service", 5.5f, 1);
+            var orderItem = _builderUtils.BuildOrderItem(1, "Delivery Service", 5.5f, 1, OrderItemType.Service);
 
-            var location = BuildLocation();
+            var location = _builderUtils.BuildLocation();
 
             var target = BuildTestTarget();
 
@@ -34,9 +42,9 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor.Strategy
         [Fact]
         public void ServiceOrderItemGetOrderTotalTest()
         {
-            var orderItem = BuildServiceOrderItem(1, "Delivery Service", 5.5f, 13);
+            var orderItem = _builderUtils.BuildOrderItem(1, "Delivery Service", 5.5f, 13, OrderItemType.Service);
 
-            var location = BuildLocation();
+            var location = _builderUtils.BuildLocation();
 
             var target = BuildTestTarget();
 
@@ -51,21 +59,6 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor.Strategy
         private IOrderItemProcessingStrategy BuildTestTarget()
         {
             return new ServiceOrderItemProcessingStrategy();
-        }
-
-        private Location BuildLocation()
-        {
-            return new Location();
-        }
-
-        private OrderItem BuildServiceOrderItem(int key, string name, float price, int quantity)
-        {
-            return new OrderItem(BuildItem(key, name, price), quantity, OrderItemType.Service);
-        }
-
-        private Item BuildItem(int key, string name, float price)
-        {
-            return new Item(key, name, price);
         }
     }
 }

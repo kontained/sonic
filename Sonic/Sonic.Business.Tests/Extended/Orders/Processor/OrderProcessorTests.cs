@@ -6,6 +6,7 @@ using Moq;
 using Sonic.Business.Extended.Orders.Processor;
 using Sonic.Business.Extended.Orders.Processor.Strategy.Factory;
 using Sonic.Business.Extended.Orders.Processor.Strategy;
+using Sonic.Business.Tests.Utils;
 using Sonic.DTO.Extended.Orders;
 using Sonic.DTO.Extended.Store;
 using Sonic.DTO.Extended.Orders.Items;
@@ -17,12 +18,14 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor
     {
         private Mock<IOrderItemStrategyFactory> _orderItemStrategyFactory;
         private Mock<IOrderItemProcessingStrategy> _orderItemProcessingStrategy;
+        private OrderBuilderUtils _builderUtils;
 
         public OrderProcessorTests()
         {
             _orderItemStrategyFactory = new Mock<IOrderItemStrategyFactory>();
             _orderItemProcessingStrategy = new Mock<IOrderItemProcessingStrategy>();
             _orderItemStrategyFactory.Setup(x => x.GetOrderItemProcessingStrategy(It.IsAny<OrderItem>())).Returns(_orderItemProcessingStrategy.Object);
+            _builderUtils = new OrderBuilderUtils();
         }
 
         [Fact]
@@ -55,7 +58,7 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor
             (
                 new List<OrderItem>
                 {
-                    new OrderItem(new Item(1, "Cheese Burger", 10.5f), 1, OrderItemType.Material)
+                    _builderUtils.BuildOrderItem(1, "Cheese Burger", 10.5f, 1, OrderItemType.Material)
                 }
             );
         }

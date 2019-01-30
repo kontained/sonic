@@ -5,6 +5,7 @@ using Moq;
 using Xunit;
 using Sonic.Business.Extended.Orders.Processor.Strategy;
 using Sonic.Business.Extended.Orders.Processor.Taxes;
+using Sonic.Business.Tests.Utils;
 using Sonic.DTO.Extended.Orders.Items;
 using Sonic.DTO.Extended.Orders;
 using Sonic.DTO.Extended.Store;
@@ -16,19 +17,21 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor.Strategy
     {
         private float _salesTax = .08625f;
         private Mock<ITaxRateService> _taxRateService;
+        private OrderBuilderUtils _builderUtils;
 
         public MaterialOrderItemProcessingStrategyTests()
         {
             _taxRateService = new Mock<ITaxRateService>();
             _taxRateService.Setup(x => x.GetTaxRate(It.IsAny<Location>())).Returns(_salesTax);
+            _builderUtils = new OrderBuilderUtils();
         }
 
         [Fact]
         public void BasicMaterialOrderItemGetOrderTotalTest()
         {
-            var orderItem = BuildMaterialOrderItem(1, "Cheese Burger", 5.5f, 1);
+            var orderItem = _builderUtils.BuildOrderItem(1, "Cheese Burger", 5.5f, 1, OrderItemType.Material);
 
-            var location = BuildLocation();
+            var location = _builderUtils.BuildLocation();
 
             var target = BuildTestTarget();
 
@@ -43,9 +46,9 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor.Strategy
         [Fact]
         public void MaterialOrderItemQuantityGetOrderTotalTest()
         {
-            var orderItem = BuildMaterialOrderItem(1, "Cheese Burger", 5.5f, 13);
+            var orderItem = _builderUtils.BuildOrderItem(1, "Cheese Burger", 5.5f, 13, OrderItemType.Material);
 
-            var location = BuildLocation();
+            var location = _builderUtils.BuildLocation();
 
             var target = BuildTestTarget();
 
@@ -60,21 +63,6 @@ namespace Sonic.Business.Tests.Extended.Orders.Processor.Strategy
         private IOrderItemProcessingStrategy BuildTestTarget()
         {
             return new MaterialOrderItemProcessingStrategy(_taxRateService.Object);
-        }
-
-        private Location BuildLocation()
-        {
-            return new Location();
-        }
-
-        private OrderItem BuildMaterialOrderItem(int key, string name, float price, int quantity)
-        {
-            return new OrderItem(BuildItem(key, name, price), quantity, OrderItemType.Material);
-        }
-
-        private Item BuildItem(int key, string name, float price)
-        {
-            return new Item(key, name, price);
         }
     }
 }

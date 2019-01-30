@@ -5,6 +5,7 @@ using Xunit;
 using Moq;
 using Sonic.Business.Extended.Orders;
 using Sonic.Business.Extended.Orders.Processor;
+using Sonic.Business.Tests.Utils;
 using Sonic.DTO.Extended.Orders;
 using Sonic.DTO.Extended.Orders.Items;
 
@@ -13,10 +14,12 @@ namespace Sonic.Business.Tests.Extended.Orders
     public class OrderServiceTests
     {
         private Mock<IOrderProcessor> _orderProcessor;
+        private OrderBuilderUtils _builderUtils;
 
         public OrderServiceTests()
         {
             _orderProcessor = new Mock<IOrderProcessor>();
+            _builderUtils = new OrderBuilderUtils();
         }
 
         [Fact]
@@ -30,7 +33,7 @@ namespace Sonic.Business.Tests.Extended.Orders
         [Fact]
         public void OrderProcessorCalledTest()
         {
-            var order = BuildOrder();
+            var order = _builderUtils.BuildEmptyOrder();
 
             var expected = 10.5f;
 
@@ -43,11 +46,6 @@ namespace Sonic.Business.Tests.Extended.Orders
             Assert.Equal(expected, result);
 
             _orderProcessor.Verify(x => x.GetOrderTotal(It.IsAny<Order>()), Times.Once);
-        }
-
-        private Order BuildOrder()
-        {
-            return new Order(new List<OrderItem>());
         }
 
         private IOrderService BuildTestTarget()
