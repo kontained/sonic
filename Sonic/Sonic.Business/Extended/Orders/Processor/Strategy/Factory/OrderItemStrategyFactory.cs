@@ -11,11 +11,15 @@ namespace Sonic.Business.Extended.Orders.Processor.Strategy.Factory
     {
         private IDictionary<OrderItemType, IOrderItemProcessingStrategy> _orderItemProcessingStrategyMap;
 
-        public OrderItemStrategyFactory()
+        public OrderItemStrategyFactory(
+            IOrderItemProcessingStrategy materialOrderItemProcessingStrategy,
+            IOrderItemProcessingStrategy serviceOrderItemProcessingStrategy)
         {
-            _orderItemProcessingStrategyMap = new Dictionary<OrderItemType, IOrderItemProcessingStrategy>();
-            //_orderItemProcessingStrategyMap.Add(OrderItemType.Material, new MaterialOrderItemProcessingStrategy());
-            _orderItemProcessingStrategyMap.Add(OrderItemType.Service, new ServiceOrderItemProcessingStrategy());
+            _orderItemProcessingStrategyMap = new Dictionary<OrderItemType, IOrderItemProcessingStrategy>
+            {
+                { OrderItemType.Material, materialOrderItemProcessingStrategy },
+                { OrderItemType.Service, serviceOrderItemProcessingStrategy }
+            };
         }
         public IOrderItemProcessingStrategy GetOrderItemProcessingStrategy(OrderItem orderItem)
         {

@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Sonic.DTO\Sonic.DTO.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Extended\Orders\Processor\Factory\" />
-  </ItemGroup>
-
 </Project>
