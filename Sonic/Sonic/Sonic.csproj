@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sonic.Business\Sonic.Business.csproj" />
+    <ProjectReference Include="..\Sonic.DataAccess\Sonic.DataAccess.csproj" />
     <ProjectReference Include="..\Sonic.DTO\Sonic.DTO.csproj" />
   </ItemGroup>
 

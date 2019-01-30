@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sonic.Business;
+using Sonic.DataAccess;
 using Sonic.Business.Extended.Orders;
 using Sonic.DTO.Basic.Items;
 using Sonic.DTO.Extended.Orders;
@@ -29,6 +30,7 @@ namespace Sonic
             var containerBuilder = new ContainerBuilder();
 
             containerBuilder.RegisterModule(new BusinessAutofacModule());
+            containerBuilder.RegisterModule(new DataAccessAutofacModule());
 
             return containerBuilder.Build();
         }
