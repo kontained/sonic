@@ -14,7 +14,7 @@ namespace Sonic.DTO.Basic.Orders.Items
             Quantity = quantity;
         }
 
-        public Item Item{ get; }
+        public Item Item { get; }
         public int Quantity { get; }
     }
 }
