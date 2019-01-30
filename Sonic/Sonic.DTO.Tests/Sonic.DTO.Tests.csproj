@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Basic\Order\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sonic.DTO\Sonic.DTO.csproj" />
   </ItemGroup>
 
