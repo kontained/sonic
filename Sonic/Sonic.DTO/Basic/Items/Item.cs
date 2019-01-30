@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Sonic.DTO.Basic.Items
 {
+    [Serializable]
     public class Item
     {
         public Item(int key, string name, float price)
