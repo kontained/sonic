@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sonic.Business\Sonic.Business.csproj" />
     <ProjectReference Include="..\Sonic.DTO\Sonic.DTO.csproj" />
   </ItemGroup>
 
